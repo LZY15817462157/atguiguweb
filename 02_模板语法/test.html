@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>1.双括号表达式|插值</h2>
+        <p>---{{msg}}---</p>
+        <p>---{{msg.toUpperCase()}}</p>
+      
+        <h2>2.指令一:强制数据绑定</h2>
+        <a href="url">去学习</a><br>
+        <a v-bind:href="url">去学习</a><br>
+        <a :href="url">去学习</a><br>
+
+        <h2>指令二:绑定事件监听</h2>
+        <button @click="test">test1</button>
+
+        <!-- 监听/监视:回调函数 -->
+    </div>
+    <SCript src="../js/vue.js"></SCript>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'I will Back',
+                url:'http://www.atguigu.com'
+            },
+            methods:{
+                test(event){
+                    alert(event.target.innerText)
+                }
+            }
+        })
+        /*
+        1.表达式不是一个完整的结构，需要与其他结构配置才能真正存在，而语句是可以独立存在
+        2.表达式返回一个数据结构，语句不会返回一个结果
+        */
+         
+    </script>
+</body>
+</html>

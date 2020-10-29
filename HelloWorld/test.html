@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+        模板页面：html+js
+        js以什么形式存在
+        指令：vue自定义标签属性(以v-开头),属性值是一个js的表达式v-model="msg"
+        插值：双括号表达式,动态显示数据{{msg}}
+     -->
+    <div id="test">
+        <input type="text" v-model="msg">
+        <p>Hello {{msg}}</p>
+    </div>
+    <p id="test2">{{msg}}</p>
+    <script src="../js/vue.js"></script>
+    <script>
+       const vue=new Vue(//配置对象：属性名是一些特定的名称  每个属性就是一个选项
+            {
+            el:'#test',//选择器字符串==> 用于指定模板的根元素
+            data:{//包含一些数据属性的对象
+                msg:'World'
+            }//.mount("#test")
+        })
+
+      setTimeout(()=>{
+        vue.msg="哈哈"
+      },1000)
+            
+        
+        
+
+        new Vue({
+            data:{
+                msg:'Tom'
+            }
+        }).$mount('#test2')
+    </script>
+</body>
+</html>
