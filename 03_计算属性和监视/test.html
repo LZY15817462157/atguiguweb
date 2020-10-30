@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="../js/vue.js"></script>
+    <script>
+        // Object.defineProperty()方法会直接在一个对象上定义一个新属性，或者修改一个对象上的现有属性
+
+        //get(){return value}
+        //set(value){}
+
+        const p={
+            firstName:'A',
+            lastName:'B'
+        }
+        /*需求
+        //1.需要给p添加一个新属性 fullName=firstName+'-'+lastName
+        //2.如果修改了firstName值或者lastName值,fullName值自动改变为对应值
+        //3.如果修改了fullName值,firstName和lastName值也会自动改变为相对应的值
+        */
+        // p.fullName=p.firstName+'-'+p.lastName
+
+        Object.defineProperty(p,'fullName',{//配置对象，属性描述符
+        // 当读取属性时自动调用，将函数的返回值作为属性值，this是属性的所在对象
+          get(){
+              console.log('get()',this)
+              return this.firstName+'-'+this.lastName
+          },
+          // 当修改了属性时自动调用，用来监视属性值的变化，this是属性的所在对象
+          set(value){//value是fullName最新的值
+             const names=value.split('-')
+             this.firstName=names[0]
+             this.lastName=names[1]
+             console.log('set()',value)
+          }
+        })
+
+        console.log(p.fullName)//A-B
+
+        p.firstName='C'
+
+        p.lastName='D'
+
+        // 不是C-D
+        console.log(p.fullName)//C-D
+
+        p.fullName='E-F' //导致对应的set调用
+        console.log(p.firstName,p.lastName)//E F
+
+
+        //回调函数的三个问题
+        //1.什么时候执行
+        //2.用来做什么
+        //3.this是谁
+    </script>
+</body>
+</html>
